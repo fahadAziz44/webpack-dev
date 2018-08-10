@@ -12,6 +12,7 @@ const commonConfig = merge([
       })
     ],
   },
+  parts.loadCSS(),
 ]);
 
 const productionConfig = merge([]);
@@ -20,7 +21,7 @@ const developmentConfig = merge([
   parts.devServer({
     host: process.env.HOST,
     port: process.env.PORT,
-  })
+  }),
 ]);
 
 
