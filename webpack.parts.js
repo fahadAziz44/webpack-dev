@@ -3,6 +3,21 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const PurifyCSSPlugin = require("purifycss-webpack");
 
+exports.loadImages = ({ include, exclude, options } = {}) => ({
+    module: {
+      rules: [
+        {
+          test: /\.(png|jpg)$/,
+          include,
+          exclude,
+          use: {
+            loader: "url-loader",
+            options,
+          },
+        },
+      ],
+    },
+});
 
 exports.purifyCSS = ({ paths }) => ({
   plugins: [new PurifyCSSPlugin({ paths })],
