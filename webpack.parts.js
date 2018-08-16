@@ -3,6 +3,21 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const PurifyCSSPlugin = require("purifycss-webpack");
 
+
+
+exports.loadJavaScript = ({ include, exclude } = {}) => ({
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          include,
+          exclude,
+          use: "babel-loader",
+        },
+      ],
+    },
+});
+
 exports.loadImages = ({ include, exclude, options } = {}) => ({
     module: {
       rules: [

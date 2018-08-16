@@ -13,6 +13,9 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^9.1.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
     "css-loader": "^1.0.0",
     "error-overlay-webpack-plugin": "^0.1.5",
     "file-loader": "^1.1.11",
