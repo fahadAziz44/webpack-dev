@@ -13,6 +13,11 @@ const PATHS = {
 
 const commonConfig = merge([
   {
+    output: {
+      chunkFilename: "chunk.[id].js"
+    }
+  },
+  {
     plugins: [
       new HtmlWebpackPlugin({
         title: "Webpack demo",
