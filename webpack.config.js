@@ -9,6 +9,7 @@ const parts = require("./webpack.parts");
 
 const PATHS = {
   app: path.join(__dirname, "src"),
+  build: path.join(__dirname, "dist"),
 };
 
 const commonConfig = merge([
@@ -43,6 +44,9 @@ const productionConfig = merge([
       name: "[name].[ext]",
     },
   }),
+  
+  parts.clean(PATHS.build),
+  parts.attachRevision(),
 
   {
     optimization: {
