@@ -20,7 +20,7 @@ const commonConfig = merge([
     ],
   },
   parts.loadJavaScript({ include: PATHS.app }),
-
+  
 ]);
 
 const productionConfig = merge([
@@ -31,7 +31,7 @@ const productionConfig = merge([
   parts.purifyCSS({
     paths: glob.sync(`${PATHS.app}/**/*.js`, { nodir: true }),
   }),
-
+  
   parts.loadImages({
     options: {
       limit: 15000,
@@ -48,6 +48,7 @@ const developmentConfig = merge([
   }),
   parts.loadCSS(),
   parts.loadImages(),
+  parts.generateSourceMaps({ type: "eval-source-map" }),
 ]);
 
 

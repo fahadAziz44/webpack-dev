@@ -78,6 +78,10 @@ exports.extractCSS = ({ include, exclude, use = [] }) => {
   };
 };
 
+exports.generateSourceMaps = ({ type }) => ({
+    devtool: type,
+});
+
 exports.devServer = ({ host, port } = {}) => ({
     devServer: {
         stats: "errors-only",
