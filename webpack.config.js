@@ -20,7 +20,7 @@ const commonConfig = merge([
     ],
   },
   parts.loadJavaScript({ include: PATHS.app }),
-  
+
 ]);
 
 const productionConfig = merge([
@@ -38,6 +38,20 @@ const productionConfig = merge([
       name: "[name].[ext]",
     },
   }),
+
+  {
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendor",
+            chunks: "initial",
+          },
+        },
+      },
+    },
+  },
 
 ]);
 
