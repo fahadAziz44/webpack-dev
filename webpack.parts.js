@@ -6,14 +6,18 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const webpack = require("webpack");
 const GitRevisionPlugin = require("git-revision-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeJsPlugin = require("optimize-js-plugin");
 
-exports.optimizeJsThroughEagerFuncs = ({sourceMaps = false}) => {
-  plugins: [
-    new OptimizeJsPlugin({
-      sourceMap,
-    }),
-  ]
-}
+exports.optimizeJsThroughEagerFuncs = ({sourceMap = false}) => {
+  console.log('source masp: ', sourceMap);
+  return {
+    plugins: [
+      new OptimizeJsPlugin({
+        sourceMap,
+      }),
+    ]
+  }
+};
 
 exports.minifyJavaScript = ({dropConsole, sourceMap}) => ({
   optimization: {
