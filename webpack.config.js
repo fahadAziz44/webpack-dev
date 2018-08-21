@@ -47,6 +47,7 @@ const productionConfig = merge([
   
   parts.clean(PATHS.build),
   parts.attachRevision(),
+  parts.minifyJavaScript({ dropConsole: true, sourceMap: false }),
 
   {
     optimization: {
@@ -61,6 +62,20 @@ const productionConfig = merge([
       },
     },
   },
+  
+  /* less precedence optimizations */
+  parts.optimizeJsThroughEagerFuncs(),
+
+]);
+
+
+const stagingConfig = merge([
+  productionConfig,
+  parts.generateSourceMaps({ type: "eval-source-map" }),
+  parts.minifyJavaScript({ dropConsole: false, sourceMap: true }),
+
+  /* less precedence optimizations */
+  parts.optimizeJsThroughEagerFuncs(true),
 
 ]);
 
@@ -78,6 +93,8 @@ const developmentConfig = merge([
 module.exports = mode => {
   if (mode === "production") {
     return merge(commonConfig, productionConfig, { mode });
+  } else if (mode === "staging") {
+    return merge(commonConfig, stagingConfig, { mode: 'production' });
   }
 
   return merge(commonConfig, developmentConfig, { mode });

@@ -5,6 +5,22 @@ const PurifyCSSPlugin = require("purifycss-webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const webpack = require("webpack");
 const GitRevisionPlugin = require("git-revision-webpack-plugin");
+const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
+
+exports.optimizeJsThroughEagerFuncs = ({sourceMaps = false}) => {
+  plugins: [
+    new OptimizeJsPlugin({
+      sourceMap,
+    }),
+  ]
+}
+
+exports.minifyJavaScript = ({dropConsole, sourceMap}) => ({
+  optimization: {
+    minimizer: [ new UglifyWebpackPlugin({ uglifyOptions: { compress: { drop_console: dropConsole } }, sourceMap }) ],
+  },
+});
+
 
 exports.attachRevision = () => ({
   plugins: [
