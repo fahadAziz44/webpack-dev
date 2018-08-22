@@ -70,33 +70,51 @@ const productionConfig = merge([
 
 
 const stagingConfig = merge([
-  productionConfig,
-
-  /*
-    gives warning: WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
-    This can impact web performance.
-    Assets: 
-    chunk.2.js (298 KiB)
-  //  parts.generateSourceMaps({ type: "eval-source-map" }),
+  parts.extractCSS({
+    use: [
+      {
+        loader: "css-loader",
+        options: {
+          sourceMap: true
+        },
+      },
+      parts.autoprefix()
+    ],
+  }),
   
-  */
+  parts.purifyCSS({
+    paths: glob.sync(`${PATHS.app}/**/*.js`, { nodir: true }),
+  }),
+  
+  parts.loadImages({
+    options: {
+      limit: 15000,
+      name: "[name].[ext]",
+    },
+  }),
+  
+  parts.clean(PATHS.build),
+  parts.attachRevision(),
+  {
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendor",
+            chunks: "initial",
+          },
+        },
+      },
+    },
+  },
+   parts.generateSourceMaps({ type: "eval-source-map" }),
+   parts.minifyJavaScript({ dropConsole: false, sourceMap: true }),
 
+   /* less precedence optimizations */
+   parts.optimizeJsThroughEagerFuncs({sourceMap: true}),
 
-   /* 
-    
-   wHEN ACTIVATED GIVES:
-    WARNING in main.js contains invalid source map
-
-    WARNING in chunk.1.js contains invalid source map
-
-    WARNING in chunk.2.js contains invalid source map
-   
-    // parts.minifyJavaScript({ dropConsole: false, sourceMap: true }),
-   
-    */
-
-  /* less precedence optimizations */
-  parts.optimizeJsThroughEagerFuncs({sourceMap: true}),
+  // 
 
 ]);
 

@@ -9,7 +9,6 @@ const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeJsPlugin = require("optimize-js-plugin");
 
 exports.optimizeJsThroughEagerFuncs = ({sourceMap = false}) => {
-  console.log('source masp: ', sourceMap);
   return {
     plugins: [
       new OptimizeJsPlugin({
@@ -78,6 +77,71 @@ exports.autoprefix = () => ({
     },
 });
 
+exports.generateSourceMaps = ({ type }) => ({
+    devtool: type,
+});
+
+exports.devServer = ({ host, port } = {}) => ({
+    devServer: {
+        stats: "errors-only",
+        host, // Defaults to `localhost`
+        port, // Defaults to 8080
+        open: true,
+        overlay: true,
+        // For friendly-errors-webpack-plugin we have to quiet errors 
+        quiet: true,
+    },
+    plugins: [
+        new ErrorOverlayPlugin(),
+        new FriendlyErrorsWebpackPlugin()
+    ]
+});
+
+
+// Development
+exports.loadCSS = ({ include, exclude } = {}) => ({
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                include,
+                exclude,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    {
+                      loader: "postcss-loader",
+                      options: {
+                      plugins: () => ([
+                          require("autoprefixer"),
+                          require("precss"),
+                      ]),
+                      },
+                    },
+                ],
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                        plugins: () => ([
+                            require("autoprefixer"),
+                            require("precss"),
+                        ]),
+                        },
+                    },
+                    "sass-loader"
+                ],
+            },
+        ],
+    },
+});
+
+// Production
 exports.extractCSS = ({ include, exclude, use = [] }) => {
   // Output extracted CSS to a file
   const plugin = new MiniCssExtractPlugin({
@@ -110,65 +174,3 @@ exports.extractCSS = ({ include, exclude, use = [] }) => {
     plugins: [plugin],
   };
 };
-
-exports.generateSourceMaps = ({ type }) => ({
-    devtool: type,
-});
-
-exports.devServer = ({ host, port } = {}) => ({
-    devServer: {
-        stats: "errors-only",
-        host, // Defaults to `localhost`
-        port, // Defaults to 8080
-        open: true,
-        overlay: true,
-        // For friendly-errors-webpack-plugin we have to quiet errors 
-        quiet: true,
-    },
-    plugins: [
-        new ErrorOverlayPlugin(),
-        new FriendlyErrorsWebpackPlugin()
-    ]
-});
-
-exports.loadCSS = ({ include, exclude } = {}) => ({
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                include,
-                exclude,
-                use: [
-                    "style-loader",
-                    "css-loader",
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                        plugins: () => ([
-                            require("autoprefixer"),
-                            require("precss"),
-                        ]),
-                        },
-                    },
-                ],
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    "style-loader",
-                    "css-loader",
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                        plugins: () => ([
-                            require("autoprefixer"),
-                            require("precss"),
-                        ]),
-                        },
-                    },
-                    "sass-loader"
-                ],
-            },
-        ],
-    },
-});
