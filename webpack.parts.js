@@ -8,6 +8,16 @@ const GitRevisionPlugin = require("git-revision-webpack-plugin");
 const UglifyWebpackPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeJsPlugin = require("optimize-js-plugin");
 
+
+exports.setFreeVariable = (key, value) => {
+  const env = {};
+  env[key] = value;
+
+  return {
+    plugins: [new webpack.EnvironmentPlugin(env)],
+  };
+};
+
 exports.optimizeJsThroughEagerFuncs = ({sourceMap = false}) => {
   return {
     plugins: [

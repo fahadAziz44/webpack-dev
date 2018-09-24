@@ -26,6 +26,7 @@ const commonConfig = merge([
     ],
   },
   parts.loadJavaScript({ include: PATHS.app }),
+  parts.setFreeVariable("HELLO", "hello from config"),
 
 ]);
 
