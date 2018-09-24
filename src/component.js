@@ -2,7 +2,7 @@ export default (text = process.env.HELLO) => {
     const element = document.createElement("button");
 
     // element.className = "pure-button";
-    element.innerHTML = text;
+    element.innerHTML = text + 'whatt';
 
     element.onclick = () => {
         import("./lazy")

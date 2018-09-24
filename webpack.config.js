@@ -15,13 +15,14 @@ const PATHS = {
 const commonConfig = merge([
   {
     output: {
-      chunkFilename: "chunk.[id].js"
+      chunkFilename: "[name].[chunkhash].js",
+      filename: "[name].[chunkhash].js",
     }
   },
   {
     plugins: [
       new HtmlWebpackPlugin({
-        title: "Webpack demo",
+        title: "Webpack configs",
       })
     ],
   },
@@ -42,7 +43,7 @@ const productionConfig = merge([
   parts.loadImages({
     options: {
       limit: 15000,
-      name: "[name].[ext]",
+      name: "[name].[hash].[ext]",
     },
   }),
   
