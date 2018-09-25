@@ -1,0 +1,109 @@
+{
+  "html-webpack-plugin for \"index.html\"": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/html-webpack-plugin/lib/loader.js!node_modules/html-webpack-plugin/default_index.ejs": 0,
+          "node_modules/lodash/lodash.js": 1,
+          "node_modules/webpack/buildin/global.js": 2,
+          "node_modules/webpack/buildin/module.js": 3
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/index.js!node_modules/postcss-loader/lib/index.js??ref--5-2!src/main.css": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/index.js!node_modules/postcss-loader/lib/index.js??ref--5-2!src/main.css": 0,
+          "node_modules/css-loader/lib/css-base.js": 1
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1
+        }
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "modules": {
+    "byIdentifier": {
+      "node_modules/react/index.js": 0,
+      "node_modules/object-assign/index.js": 1,
+      "node_modules/fbjs/lib/invariant.js": 2,
+      "node_modules/fbjs/lib/emptyObject.js": 3,
+      "node_modules/fbjs/lib/emptyFunction.js": 4,
+      "node_modules/react/cjs/react.production.min.js": 5,
+      "node_modules/react-dom/index.js": 6,
+      "node_modules/react-dom/cjs/react-dom.production.min.js": 7,
+      "node_modules/fbjs/lib/ExecutionEnvironment.js": 8,
+      "node_modules/fbjs/lib/getActiveElement.js": 9,
+      "node_modules/fbjs/lib/shallowEqual.js": 10,
+      "node_modules/fbjs/lib/containsNode.js": 11,
+      "node_modules/fbjs/lib/isTextNode.js": 12,
+      "node_modules/fbjs/lib/isNode.js": 13,
+      "node_modules/mini-css-extract-plugin/dist/loader.js!node_modules/css-loader/index.js!node_modules/postcss-loader/lib/index.js??ref--5-2!src/main.css": 14,
+      "css node_modules/css-loader/index.js!node_modules/postcss-loader/lib/index.js??ref--5-2!src/main.css 0": 15,
+      "node_modules/babel-loader/lib/index.js!src/index.js 0af6debe96e3a225023ec70841686632": 16,
+      "node_modules/babel-loader/lib/index.js!src/lazy.js": 17,
+      "node_modules/babel-loader/lib/index.js!src/index.js 87131a61e05e44cab41aa3dce1974e1c": 16
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "10": 10,
+      "11": 11,
+      "12": 12,
+      "13": 13,
+      "14": 14,
+      "15": 15,
+      "16": 16,
+      "17": 17
+    }
+  },
+  "chunks": {
+    "byName": {
+      "main": 0,
+      "vendor": 2,
+      "manifest": 3
+    },
+    "bySource": {
+      "0 node_modules/babel-loader/lib/index.js!src/component.js ./lazy": 1
+    },
+    "usedIds": [
+      0,
+      1,
+      2,
+      3
+    ]
+  }
+}

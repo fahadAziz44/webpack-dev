@@ -62,7 +62,11 @@ const productionConfig = merge([
           },
         },
       },
+      runtimeChunk: {
+        name: "manifest",
+      },
     },
+    recordsPath: path.join(__dirname, "records.json"),
   },
   
   /* less precedence optimizations */
@@ -100,6 +104,7 @@ const stagingConfig = merge([
   {
     optimization: {
       splitChunks: {
+        // chunks: 'initial',
         cacheGroups: {
           commons: {
             test: /[\\/]node_modules[\\/]/,
@@ -107,6 +112,9 @@ const stagingConfig = merge([
             chunks: "initial",
           },
         },
+      },
+      runtimeChunk: {
+        name: "manifest",
       },
     },
   },
