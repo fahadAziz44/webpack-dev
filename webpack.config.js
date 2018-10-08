@@ -14,12 +14,6 @@ const PATHS = {
 
 const commonConfig = merge([
   {
-    output: {
-      chunkFilename: "[name].[chunkhash].js",
-      filename: "[name].[chunkhash].js",
-    }
-  },
-  {
     plugins: [
       new HtmlWebpackPlugin({
         title: "Webpack configs",
@@ -32,6 +26,12 @@ const commonConfig = merge([
 ]);
 
 const productionConfig = merge([
+  {
+    output: {
+      chunkFilename: "[name].[chunkhash].js",
+      filename: "[name].[chunkhash].js",
+    }
+  },
   parts.extractCSS({
     use: ["css-loader", parts.autoprefix()],
   }),
@@ -76,6 +76,12 @@ const productionConfig = merge([
 
 
 const stagingConfig = merge([
+  {
+    output: {
+      chunkFilename: "[name].[chunkhash].js",
+      filename: "[name].[chunkhash].js",
+    }
+  },
   parts.extractCSS({
     use: [
       {
@@ -129,6 +135,12 @@ const stagingConfig = merge([
 ]);
 
 const developmentConfig = merge([
+  {
+    output: {
+      chunkFilename: "[name].[hash].js",
+      filename: "[name].[hash].js",
+    }
+  },
   parts.devServer({
     host: process.env.HOST,
     port: process.env.PORT,

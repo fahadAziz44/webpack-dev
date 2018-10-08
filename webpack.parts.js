@@ -98,12 +98,16 @@ exports.devServer = ({ host, port } = {}) => ({
         port, // Defaults to 8080
         open: true,
         overlay: true,
+        // Don't refresh if hot loading fails. Good while
+        // implementing the client interface.
+        hotOnly: true,
         // For friendly-errors-webpack-plugin we have to quiet errors 
         quiet: true,
     },
     plugins: [
         new ErrorOverlayPlugin(),
-        new FriendlyErrorsWebpackPlugin()
+        new FriendlyErrorsWebpackPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
     ]
 });
 
